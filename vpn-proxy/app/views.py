@@ -99,5 +99,7 @@ def ping(request, tunnel_id, target):
     cmd = ['ping', '-c', str(pkts), '-i', '0.4', '-W', '1', '-q', '-I',
            str(tunnel.name), str(hostname)]
     ping_output = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    ping_parsed = pingparser.parse(ping_output.stdout.read())
-    return JsonResponse(ping_parsed)
+    ping_parser = pingparsing.PingParsing()
+    ping_parser.parse(ping_output.stdout.read())
+    return JsonResponse(ping_parser.as_dict())
+
