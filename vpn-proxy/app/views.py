@@ -1,5 +1,5 @@
 import logging
-
+import pingparsing
 
 from django.http import HttpResponse
 from django.http import JsonResponse as _JsonResponse
